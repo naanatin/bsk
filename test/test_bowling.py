@@ -80,3 +80,19 @@ class TestBowlingGame(unittest.TestCase):
         game.add_frame(Frame(2, 6))
 
         self.assertEqual(91, game.calculate_score())
+
+    def test_count_game_score_with_last_frame_spare(self):
+        game = BowlingGame()
+        game.add_frame(Frame(1, 9))
+        game.add_frame(Frame(3, 6))
+        game.add_frame(Frame(7, 2))
+        game.add_frame(Frame(3, 6))
+        game.add_frame(Frame(4, 4))
+        game.add_frame(Frame(5, 3))
+        game.add_frame(Frame(3, 3))
+        game.add_frame(Frame(4, 5))
+        game.add_frame(Frame(8, 2))
+        game.add_frame(Frame(2, 8))
+        game.set_first_bonus_throw(3)
+
+        self.assertEqual(96, game.calculate_score())
