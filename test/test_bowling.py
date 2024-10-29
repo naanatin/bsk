@@ -97,7 +97,7 @@ class TestBowlingGame(unittest.TestCase):
 
         self.assertEqual(86, game.calculate_score())
 
-    def test_count_game_score_with_strike(self):
+    def test_count_game_score_with_two_strikes(self):
         game = BowlingGame()
         game.add_frame(Frame(10, 0))
         game.add_frame(Frame(3, 6))
