@@ -180,4 +180,4 @@ class TestBowlingGame(unittest.TestCase):
         game = BowlingGame()
         game.add_frame(Frame(7, 2))
 
-        self.assertRaises(BowlingError, game.get_frame_at(), 1)
+        self.assertRaises(BowlingError, game.get_frame_at, 1)
