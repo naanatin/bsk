@@ -17,18 +17,40 @@ class BowlingGame:
 
     def calculate_score(self) -> int:
         score = 0
-        for i, frame in enumerate(self.frames, 0):
-            if frame.is_spare():
-                if i < len(self.frames)-1:
-                    score += self.frames[i + 1].get_first_throw()
-            if frame.is_strike():
-                if i < len(self.frames)-1:
-                    score += self.frames[i + 1].score()
-            score += frame.score()
+        for i, frame in enumerate(self.frames):
+            if i < len(self.frames)-2:
+                if frame.is_strike():
+                    score += frame.score()
+                    score += self.get_frame_at(i+1).get_first_throw()
+                    if self.get_frame_at(i+1).is_strike():
+                        score += self.get_frame_at(i+2).get_first_throw()
+                    else:
+                        score += self.get_frame_at(i+1).get_second_throw()
+                elif frame.is_spare():
+                    score += frame.score() + self.get_frame_at(i+1).get_first_throw()
+                else:
+                    score += frame.score()
+
+            elif i == len(self.frames)-2:
+                if frame.is_strike():
+                    score += frame.score()
+                    score += self.get_frame_at(i+1).get_first_throw()
+                    if self.get_frame_at(i+1).is_strike():
+                        score += self.get_frame_at(i+1).get_first_bonus()
+                    else:
+                        score += self.get_frame_at(i+1).get_second_throw()
+                elif frame.is_spare():
+                    score += 10 + self.get_frame_at(i + 1).get_first_throw()
+                else:
+                    score += frame.score()
+
+            elif i == 9:
+                score += frame.score()
+
         return score
 
     def set_first_bonus_throw(self, bonus_throw: int) -> None:
-        self.frames[len(self.frames) - 1].set_bonus(bonus_throw)
+        self.get_frame_at(len(self.frames)-1).set_bonus(bonus_throw)
 
     def set_second_bonus_throw(self, bonus_throw: int) -> None:
-        self.frames[len(self.frames) - 1].set_bonus(bonus_throw)
+        self.get_frame_at(len(self.frames)-1).set_bonus(bonus_throw)
