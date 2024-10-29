@@ -93,9 +93,9 @@ class TestBowlingGame(unittest.TestCase):
         game.add_frame(Frame(4, 5))
         game.add_frame(Frame(8, 1))
         game.add_frame(Frame(2, 8))
-        game.set_first_bonus_throw(3)
+        game.set_first_bonus_throw(7)
 
-        self.assertEqual(86, game.calculate_score())
+        self.assertEqual(90, game.calculate_score())
 
     def test_count_game_score_with_strike(self):
         game = BowlingGame()
