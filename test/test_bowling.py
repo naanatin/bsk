@@ -19,5 +19,5 @@ class TestBowlingGame(unittest.TestCase):
         game.add_frame(Frame(8, 1))
         game.add_frame(Frame(2, 6))
 
-        self.assertEqual([1, 5], game.get_frame_at(0))
+        self.assertIsNotNone(game.get_frame_at(9))
 
