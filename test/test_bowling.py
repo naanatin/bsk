@@ -158,3 +158,20 @@ class TestBowlingGame(unittest.TestCase):
         game.add_frame(Frame(2, 6))
 
         self.assertEqual(112, game.calculate_score())
+
+    def test_count_game_score_with_all_strikes(self):
+        game = BowlingGame()
+        game.add_frame(Frame(10, 0))
+        game.add_frame(Frame(10, 0))
+        game.add_frame(Frame(10, 0))
+        game.add_frame(Frame(10, 0))
+        game.add_frame(Frame(10, 0))
+        game.add_frame(Frame(10, 0))
+        game.add_frame(Frame(10, 0))
+        game.add_frame(Frame(10, 0))
+        game.add_frame(Frame(10, 0))
+        game.add_frame(Frame(10, 0))
+        game.set_first_bonus_throw(10)
+        game.set_second_bonus_throw(10)
+
+        self.assertEqual(300, game.calculate_score())
