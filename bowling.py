@@ -17,15 +17,15 @@ class BowlingGame:
 
     def calculate_score(self) -> int:
         score = 0
-        frames = self._frames
-        for i, frame in enumerate(frames, 0):
+        for i, frame in enumerate(self._frames, 0):
             if frame.is_spare():
-                score += frames[i+1].get_first_throw()
-            score += frame.get_first_throw() + frame.get_second_throw()
+                if i < len(self._frames)-1:
+                    score += self._frames[i+1].get_first_throw()
+            score += frame.score()
         return score
 
     def set_first_bonus_throw(self, bonus_throw: int) -> None:
-        pass
+        self._frames[len(self._frames)-1].set_bonus(bonus_throw)
 
     def set_second_bonus_throw(self, bonus_throw: int) -> None:
         pass
