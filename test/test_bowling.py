@@ -174,5 +174,10 @@ class TestBowlingGame(unittest.TestCase):
         game.set_first_bonus_throw(10)
         game.set_second_bonus_throw(10)
 
-
         self.assertEqual(300, game.calculate_score())
+
+    def test_get_frame_outside_boundary(self):
+        game = BowlingGame()
+        game.add_frame(Frame(7, 2))
+
+        self.assertRaises(BowlingError, game.get_frame_at(), 1)
